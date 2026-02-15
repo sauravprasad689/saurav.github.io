@@ -1,177 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Phish Guard - Login</title>
 
-<!-- GSAP -->
+<link rel="stylesheet" href="login.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-<style>
-
-/* RESET */
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:"Segoe UI", Arial, sans-serif;
-}
-
-/* THEME VARIABLES */
-:root{
-  --bg1:#0f172a;
-  --bg2:#1e293b;
-  --card:rgba(255,255,255,0.12);
-  --text:#ffffff;
-  --input:rgba(255,255,255,0.2);
-}
-
-body.light{
-  --bg1:#e5e7eb;
-  --bg2:#f9fafb;
-  --card:rgba(255,255,255,0.6);
-  --text:#111827;
-  --input:#ffffff;
-}
-
-body{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  transition:0.4s;
-}
-
-/* TOGGLE */
-.toggle{
-  position:absolute;
-  top:25px;
-  right:25px;
-  background:var(--card);
-  padding:10px 14px;
-  border-radius:20px;
-  cursor:pointer;
-  color:var(--text);
-  backdrop-filter:blur(10px);
-}
-
-/* GLASS CARD */
-.container{
-  width:420px;
-  padding:40px;
-  background:var(--card);
-  backdrop-filter:blur(18px);
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,0.25);
-  box-shadow:0 30px 70px rgba(0,0,0,0.35);
-  color:var(--text);
-}
-
-/* TITLE */
-h2{
-  text-align:center;
-  margin-bottom:30px;
-  font-size:26px;
-}
-
-/* INPUTS */
-input{
-  width:100%;
-  padding:15px;
-  margin-bottom:18px;
-  border-radius:12px;
-  border:none;
-  background:var(--input);
-  color:var(--text);
-}
-
-input::placeholder{color:#aaa;}
-input:focus{outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.4);}
-
-/* BUTTON */
-button{
-  width:100%;
-  padding:15px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(135deg,#3b82f6,#2563eb);
-  color:white;
-  font-size:16px;
-  font-weight:600;
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-}
-
-/* LOADER */
-.spinner{
-  width:22px;
-  height:22px;
-  border:3px solid rgba(255,255,255,0.3);
-  border-top:3px solid white;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  display:none;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg);}
-}
-
-/* TOAST */
-.toast{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  background:rgba(34,197,94,.9);
-  color:white;
-  padding:16px 22px;
-  border-radius:12px;
-  opacity:0;
-}
-
-/* TOAST ERROR */
-.toast.error{
-  background:rgba(239,68,68,.9);
-}
-
-</style>
 </head>
 
 <body>
 
-<div class="toggle" onclick="toggleMode()">🌙 / ☀️</div>
+<div class="bubbles">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
 <div class="container">
-  <h2>Welcome Back</h2>
 
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
+  <div class="image-section">
+    <img src="https://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png">
+    <h1>Secure Login</h1>
+    <p>AI powered phishing protection</p>
+  </div>
 
-  <button onclick="login()">
-    <span id="btnText">Login</span>
-    <div class="spinner" id="spinner"></div>
-  </button>
+  <div class="form-section">
+    <h2>Welcome Back</h2>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">
+      <span id="btnText">Login</span>
+      <div class="spinner" id="spinner"></div>
+    </button>
+  </div>
+
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 
-/* INTRO */
-gsap.from(".container",{scale:.8,opacity:0,duration:1});
+gsap.from(".container",{scale:.8,opacity:0,duration:1.2});
 
-/* TOGGLE MODE */
-function toggleMode(){
-  document.body.classList.toggle("light");
-}
-
-/* TOAST */
 function showToast(msg,type){
   const toast=document.getElementById("toast");
   toast.textContent=msg;
@@ -180,7 +53,6 @@ function showToast(msg,type){
   setTimeout(()=>gsap.to(toast,{opacity:0,y:0,duration:.5}),2000);
 }
 
-/* LOGIN */
 function login(){
   const btnText=document.getElementById("btnText");
   const spinner=document.getElementById("spinner");
@@ -199,7 +71,12 @@ function login(){
     spinner.style.display="none";
     btnText.style.opacity="1";
 
-    if(!sEmail||!sPass){
+    if(!email || !pass){
+      showToast("Fill all fields","error");
+      return;
+    }
+
+    if(!sEmail || !sPass){
       showToast("No account found","error");
       return;
     }
@@ -208,7 +85,7 @@ function login(){
       showToast("Login Successful!");
       gsap.from(".container",{scale:1.05,duration:.4});
       setTimeout(()=>{
-        window.location.href="https://www.google.com/";
+        window.location.href="https://mail.google.com";
       },1200);
     }else{
       gsap.from(".container",{x:-10,repeat:6,yoyo:true,duration:.1});
@@ -222,4 +99,3 @@ function login(){
 
 </body>
 </html>
-
