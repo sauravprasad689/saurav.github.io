@@ -1,28 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>PhishGuard AI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard AI | Email Phishing Detector</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>🛡️ PhishGuard AI</h1>
-    <p>Advanced Gmail Threat Detection System</p>
-  </header>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🛡️ PhishGuard AI</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="register.html" class="btn-nav">Register</a>
+    </div>
+  </nav>
 
-  <section>
-    <h2>Protect Your Inbox</h2>
-    <p>Hybrid AI-based phishing detection engine.</p>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1 class="hero-title">Advanced Email Phishing Detection</h1>
+    <p class="hero-subtitle">
+      AI-powered Gmail security extension that protects your inbox from phishing, spam & malware threats.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="register.html" class="primary-btn">Get Started</a>
+      <a href="https://github.com/sauravprasad689/PHISHING-EMAIL-DETECTOR-EXTENSION" 
+         target="_blank" 
+         class="secondary-btn">
+         Download Extension
+      </a>
+    </div>
   </section>
 
-  <div class="buttons">
-    <a href="register.html"><button>Get Started</button></a>
-    <a href="login.html"><button>Login</button></a>
-  </div>
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <h2>Core Features</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>AI Detection</h3>
+        <p>Machine learning based phishing classification engine.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Real-Time Scanning</h3>
+        <p>Instant threat analysis directly inside Gmail.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Secure Architecture</h3>
+        <p>Privacy-first design with local processing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <h2>Why PhishGuard AI?</h2>
+    <p>
+      Email phishing attacks are increasing rapidly. PhishGuard AI integrates advanced 
+      detection techniques to ensure your digital communication stays secure.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 PhishGuard AI | Built for Secure Communication</p>
+  </footer>
 
   <script src="script.js"></script>
-
-
 </body>
 </html>
